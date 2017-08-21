@@ -1,0 +1,25 @@
+{
+  "location-list": [
+    ["1", "Location1"],
+    ["2", "Location2"],
+    ["3", "Location3"],
+    ["5", "Location4"]
+  ],
+  "offline-list": [
+    {
+      "cardNumber": "900013663",
+      "locationId": "2",
+      "date": "2017-1-4"
+    },
+    {
+      "cardNumber": "900013663",
+      "locationId": "2",
+      "date": "2017-01-5"
+    },
+    {
+      "cardNumber": "900013663",
+      "locationId": "3",
+      "date": "2017-01-05"
+    }
+  ]
+}
