@@ -5,6 +5,7 @@
     ["3", "Location3"],
     ["5", "Location4"]
   ],
+  "current-location" :"2",
   "offline-list": [
     {
       "cardNumber": "900013663",

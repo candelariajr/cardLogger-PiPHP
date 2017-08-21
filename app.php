@@ -7,7 +7,7 @@
  */
 
 /*
- * DOCUMENTATION TERMS:
+ * DOCUMENTATION TERMINOLOGY:
  *
  * SERVER: The web server this device is running
  * CONTROL SERVER: The central app management/programming portal
@@ -31,7 +31,7 @@ $debugState = false;
  *  Keeping this up to date with the config.json file will prevent accidental programatic deletion of
  *  components that are needed for apps operation.
  * */
-$configFileTemplate = array("location-list", "offline-list");
+$configFileTemplate = array("location-list", "offline-list", "current-location");
 /** @var boolean if you get the list of offline transactions, do you want to clear them?
  * This gives some flexibility in writing the client callbacks $autoDeleteOnOfflineGet */
 $autoDeleteOnOfflineGet = false;
@@ -78,6 +78,10 @@ if(isset($_GET['action'])){
         getOfflineTransactionList();
     }if($action == "getConfig"){
         getConfig();
+    }if($action == "getLocation"){
+        getCurrentLocation();
+    }if($action == "setLocation" && ctype_digit($_GET['location'])){
+        setCurrentLocation($_GET['location']);
     }
     //TODO: Remove this!
     if($action == "test"){
@@ -279,4 +283,38 @@ function getReply($success, $message){
         $returnArray['message'] = $message;
     }
     return json_encode($returnArray);
+}
+
+/*
+ * Called by GET request
+ * returns JSON:
+ * {
+ *      location-name: "stuff",
+ *      location-index: 17
+ * }
+ * corresponding to the current set location
+ * location-name defaults to "Default" and 0 if there is no data present
+ * IF IT DOES THEN THE CONFIG IS MESSED UP!
+ * */
+function getCurrentLocation(){
+    $jsonData = getJsonFromConfigFile();
+    $foundLocation = false;
+    $currentLocationName = "";
+    $currentLocationIndex = "";
+    for($i = 0; $i < sizeof($jsonData['location-list']); $i++){
+        if($jsonData['current-location'] == $jsonData['location-list'][$i][0]){
+            $foundLocation = true;
+            $currentLocationName =  $jsonData['location-list'][$i][1];
+            $currentLocationIndex = $jsonData['location-list'][$i][0];
+        }
+    }
+    if(!$foundLocation){
+        $currentLocationName = 'Default';
+        $currentLocationIndex = '0';
+    }
+    echo json_encode(array('location-name' => $currentLocationName, 'location-index' => $currentLocationIndex));
+}
+
+function setCurrentLocation($locationInt){
+    
 }
