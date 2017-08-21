@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        /*grid elements are 80x80*/
+        *{
+            font-family: Arial, Verdana, sans-serif;
+        }
+
+        h2{
+            margin: 0;
+        }
+
+        body{
+            padding: 0;
+            margin: 0;
+        }
+
+        #container{
+            background-color: black;
+            width: 640px;
+            height: 479px;
+        }
+
+
+        /* http://meyerweb.com/eric/tools/css/reset/
+            v2.0 | 20110126
+            License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed,
+        figure, figcaption, footer, header, hgroup,
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /*
+
+        MAIN BAR STUFF:
+
+        */
+
+        span{
+
+        }
+
+        #statusLabel{
+            background-color: aqua;
+            color: black;
+            height: 80px;
+            line-height: 80px;
+            width: 80px;
+            text-align: center;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        #statusText{
+            background-color: aqua;
+            color: black;
+            height: 80px;
+            line-height: 80px;
+            width: 400px;
+            text-align: left;
+            vertical-align: middle;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        #touchscreenText{
+            background-color: #21b133;
+            color: black;
+            height: 80px;
+            line-height: 130px;
+            width: 160px;
+            text-align: center;
+            vertical-align: bottom;
+            display: inline-block;
+            font-size: 20px;
+        }
+        /*
+
+        MAIN BAR STUFF:
+
+        */
+        .rowContainer{
+            width: 100%;
+        }
+
+        .label{
+            vertical-align: middle;
+            display:inline-block;
+            line-height: 80px;
+            font-size: 17px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .text{
+            vertical-align: middle;
+            display:inline-block;
+            line-height: 80px;
+            font-size: 20px;
+            text-align: left;
+        }
+
+        .textWrap{
+            vertical-align: middle;
+            display:inline-block;
+            line-height: 25px;
+            font-size: 17px;
+            text-align: center;
+            padding: 15px 0 15px 0;
+            font-weight: bold;
+        }
+
+        .bottom{
+            vertical-align: bottom;
+            line-height: 80px;
+            display: inline-block;
+            font-size: 15px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .top{
+            vertical-align: top;
+            line-height: 80px;
+            display: inline-block;
+            font-size: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .bottomText{
+            vertical-align: bottom;
+            line-height: 17px;
+        }
+
+        .topText{
+            vertical-align: top;
+            line-height: 17px;
+        }
+
+        .statusbar{
+            background-color: rgba(0, 184, 255, 0.93);
+            color: black;
+        }
+
+        #statusLabelContainer{
+            height: 16.66%;
+            width: 12.5%;
+        }
+
+        #statusTextContainer{
+            height: 16.66%;
+            width: 62.5%;
+        }
+
+        .touchenable{
+            background-color: palegreen;
+            color: black;
+        }
+
+        #touchScreenTextContainer{
+            height: 16.66%;
+            width: 25%;
+        }
+
+        .profilebar{
+            color: black;
+            background-color: rgba(116, 212, 68, 0.93);
+        }
+
+        .changeProfile{
+            color: black;
+            background-color: #e75a11;
+        }
+
+        #profileLabelContainer{height: 16.66%; width: 12.5%;}
+        #profileTextContainer{height: 16.66%; width: 37.5%;}
+        #changeProfileButtonContainer{height: 16.66%; width: 25%;}
+        #touchscreenStatusContainer{height: 16.66%; width: 25%;}
+
+        /*
+
+        PROFILE SPECIFIC:
+
+        */
+        .location{
+            color: black;
+            background-color: #aeaaaa;
+        }
+
+        .update{
+            color: black;
+            background-color: #2f75b5;
+        }
+
+        #locationLabelContainer{height: 16.66%; width: 12.5%; border-bottom: 1px solid black;}
+        #locationTextContainer{height: 16.66%; width: 37.5%; border-bottom: 1px solid black;}
+        #updateLabelContainer{height: 16.66%; width: 12.5%; border-bottom: 1px solid black;}
+        #updateTextContainer{height: 16.66%; width: 37.5%; border-bottom: 1px solid black;}
+
+        #setLocationButtonContainer{
+            height: 238px;
+            vertical-align: middle;
+            line-height: 239px;
+            width: 50%;
+            font-size: 51px;
+        }
+        #updateButtonContainer{
+            height: 238px;
+            vertical-align: middle;
+            line-height: 239px;
+            width: 50%;
+            font-size: 51px;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id='container'>
+    <div class="rowContainer">
+        <div id="statusLabelContainer" class="statusbar label">Status: </div><div id="statusTextContainer" class="statusbar text">Getting data from server</div><div id="touchScreenTextContainer" class="touchenable bottom"><span class="bottomText">Touchscreen</span></div>
+    </div>
+    <div class="rowContainer">
+        <div id="profileLabelContainer" class="profilebar label">Profile: </div><div id="profileTextContainer" class="profilebar text">Swiper</div><div id="changeProfileButtonContainer" class= "changeProfile label">Change Profile</div><div id="touchscreenStatusContainer" class="touchenable top"><span class="topText">Unlocked</span></div>
+    </div>
+    <!--
+        PROFILE SPECIFIC:
+    -->
+    <div class="rowContainer">
+        <div id="locationLabelContainer" class="location label">Location: </div><div id="locationTextContainer" class="location text">Karl's Office</div><div id="updateLabelContainer" class="update textWrap">Last Update: </div><div id="updateTextContainer" class="update text">8/20/2017 11:30:05</div>
+    </div>
+    <div class="rowContainer">
+        <div id="setLocationButtonContainer" class="location label">Set Location</div><div id="updateButtonContainer" class="update label">Update</div>
+    </div>
+    <!--
+    <div id="statusLabel"><b>Status</b></div>
+    <div id="statusText">Getting data from server</div>
+    <div id="touchscreenText">Touchscreen</div>
+    <!--
+    <h2>Testing</h2>
+    <button id='theButton'>Ajax Request</button>
+    <br><br>
+    <div id='parameters'></div>
+    -->
+</div>
+</body>
+<script>
+    (function(){
+        console.log("self-invoking function call");
+
+
+        function makeAjax(url, callback){
+            console.log("Making request to " + url);
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(this.readyState == 4 && this.status == 200){
+                    var argument = JSON.parse(this.responseText);
+                    //var argument = this.responseText;
+                    if(argument != undefined){
+                        callback(argument);
+                    }
+                }
+            };
+            xmlhttp.open("GET", url, true);
+            xmlhttp.send();
+        }
+
+        function parseResult(argument){
+            console.log("parseResult callback started");
+            console.log(argument);
+            document.getElementById("parameters").innerHTML= argument.Stuff;
+        }
+
+        document.getElementById('theButton').onclick=function(){
+            makeAjax("getItems.php", parseResult);
+        }
+    })();
+</script>
+</html>
