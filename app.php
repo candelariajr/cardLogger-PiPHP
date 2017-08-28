@@ -82,6 +82,8 @@ if(isset($_GET['action'])){
         getCurrentLocation();
     }if($action == "setLocation" && ctype_digit($_GET['location'])){
         setCurrentLocation($_GET['location']);
+    }if($action == "addOfflineTransaction"){
+        addOfflineTransaction();
     }
     //TODO: Remove this!
     if($action == "test"){
@@ -185,18 +187,23 @@ function addOfflineTransaction(){
     //get the JSON from file
     //TODO: Finish writing this function
     $jsonData = getJsonFromConfigFile();
+    $cardNumber = "";
+    $location = "";
     if(isset($_GET['cardNumber']) && isset($_GET['location'])){
         $cardNumber = $_GET['cardNumber'];
-
+        $location = $_GET['location'];
     }
-    else if(isset($_GET['cardNumber'])){
+    else if(isset($_GET['cardNumber']) && !isset($_GET['location'])){
         $cardNumber = $_GET['cardNumber'];
-        echo getReply(true, "card $cardNumber added to list");
-        //open the file-
-        //append card# and date to file
-        //save the file
-        //close the file
+        $location = 0;
     }
+    $offlineObject = array('cardNumer' => $cardNumber, 'location' => $location, 'date' => date("Y-m-d H:i:s"));
+    //$jsonData['offline-list'].push(array('' => ''));
+    array_push($jsonData['offline-list'], $offlineObject);
+    saveJsonToConfigFile($jsonData);
+    //append card# and date to file
+    //save the file
+    //close the file
 }
 
 /*
